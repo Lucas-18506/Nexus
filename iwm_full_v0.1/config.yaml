@@ -1,0 +1,31 @@
+data_collection:
+  macro:
+    indicators:
+      - name: US_10Y_Yield
+        ticker: ^TNX
+      - name: US_2Y_Yield
+        ticker: ^IRX
+      - name: DXY
+        ticker: DX-Y.NYB
+      - name: USD_CNY
+        ticker: CNY=X
+  news:
+    keywords:
+      - "AI artificial intelligence investment"
+      - "semiconductor chip earnings"
+      - "Federal Reserve interest rate policy"
+      - "China economy PMI"
+    max_articles_per_run: 20
+
+agents:
+  macro_analyst:
+    model: gpt-4o
+    temperature: 0.3
+  devil_advocate:
+    model: gpt-4o
+    temperature: 0.5
+
+reports:
+  daily:
+    max_events: 10
+    max_opportunities: 5

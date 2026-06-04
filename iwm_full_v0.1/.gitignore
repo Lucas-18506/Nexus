@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv/
+venv/
+data/news/*.json
+data/vector_backup/*.json
+*.log
+.DS_Store

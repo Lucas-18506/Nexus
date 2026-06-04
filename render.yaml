@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: iwm-backend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: iwm-postgres
+          property: connectionString
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: QDRANT_API_KEY
+        sync: false
+      - key: QDRANT_HOST
+        value: localhost
+      - key: QDRANT_PORT
+        value: 6333
+      - key: ANALYSIS_REPORTS_DIR
+        value: /app/analysis_reports
+      - key: LOG_LEVEL
+        value: INFO
+    healthCheckPath: /health
+
+  # 可选：如果需要 Qdrant 向量库，可以添加一个 docker 服务
+  # 但 Render 免费版不支持多服务，建议本地运行 Qdrant 或使用内存版本
+  # - type: web
+  #   name: iwm-qdrant
+  #   runtime: docker
+  #   image: qdrant/qdrant:latest
+  #   plan: free
+  #   envVars:
+  #     - key: QDRANT__SERVICE__HTTP_PORT
+  #       value: 6333
+
+databases:
+  - name: iwm-postgres
+    plan: free
+    databaseName: iwm
+    user: iwm
