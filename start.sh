@@ -1,6 +1,8 @@
 #!/bin/bash
 # 启动脚本 - 用于 Render 等平台
 
+cd iwm_full_v0.1
+
 # 初始化数据库
 python3 -c "
 import asyncio
