@@ -2,6 +2,7 @@
 
 from typing import AsyncGenerator
 
+from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_sessionmaker,
@@ -9,6 +10,12 @@ from sqlalchemy.ext.asyncio import (
 )
 
 from app.core.config import settings
+
+
+class Base(DeclarativeBase):
+    """Base class for all SQLAlchemy ORM models."""
+    pass
+
 
 # 根据配置自动选择数据库引擎（PostgreSQL / SQLite）
 engine = create_async_engine(
@@ -38,7 +45,5 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
 
 async def init_db() -> None:
     """Create all database tables based on SQLAlchemy models."""
-    from app.models.base import Base
-
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)

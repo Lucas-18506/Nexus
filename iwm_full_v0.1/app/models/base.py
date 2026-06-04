@@ -1,9 +1,8 @@
-"""SQLAlchemy declarative base for all models."""
+"""SQLAlchemy declarative base for all models.
 
-from sqlalchemy.orm import DeclarativeBase
+统一从 app.core.database 导入 Base，避免循环导入。
+"""
 
+from app.core.database import Base
 
-class Base(DeclarativeBase):
-    """Base class for all SQLAlchemy ORM models."""
-
-    pass
+__all__ = ["Base"]
