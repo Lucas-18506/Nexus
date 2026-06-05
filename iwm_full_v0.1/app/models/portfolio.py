@@ -68,7 +68,7 @@ class Position(Base):
     # 扩展字段
     tags: Mapped[Optional[List[str]]] = mapped_column(JSONB, nullable=True, default=list)
     notes: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
-    metadata: Mapped[Optional[Dict[str, Any]]] = mapped_column(
+    meta_data: Mapped[Optional[Dict[str, Any]]] = mapped_column(
         JSONB, nullable=True, default=dict
     )  # 如 { "broker": "富途", "account": "主账户" }
 
@@ -181,7 +181,7 @@ class Position(Base):
             "distance_to_stop": self.distance_to_stop,
             "tags": self.tags or [],
             "notes": self.notes,
-            "metadata": self.metadata or {},
+            "metadata": self.meta_data or {},
             "created_at": self.created_at.isoformat() if self.created_at else None,
             "updated_at": self.updated_at.isoformat() if self.updated_at else None,
         }
@@ -296,7 +296,7 @@ class WatchlistItem(Base):
     # 扩展
     tags: Mapped[Optional[List[str]]] = mapped_column(JSONB, nullable=True, default=list)
     notes: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
-    metadata: Mapped[Optional[Dict[str, Any]]] = mapped_column(
+    meta_data: Mapped[Optional[Dict[str, Any]]] = mapped_column(
         JSONB, nullable=True, default=dict
     )
 
@@ -343,7 +343,7 @@ class WatchlistItem(Base):
             "alert_conditions": self.alert_conditions or {},
             "tags": self.tags or [],
             "notes": self.notes,
-            "metadata": self.metadata or {},
+            "metadata": self.meta_data or {},
             "created_at": self.created_at.isoformat() if self.created_at else None,
             "updated_at": self.updated_at.isoformat() if self.updated_at else None,
         }
