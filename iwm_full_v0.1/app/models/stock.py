@@ -1,6 +1,6 @@
 """Stock-related database models."""
 
-from sqlalchemy import Column, Integer, String, Float, DateTime, Date, BIGINT
+from sqlalchemy import Column, Integer, String, Float, DateTime, Date, BigInteger
 from sqlalchemy.sql import func
 from app.core.database import Base
 
@@ -18,7 +18,7 @@ class StockPrice(Base):
     high_price = Column(Float, nullable=False)
     low_price = Column(Float, nullable=False)
     close_price = Column(Float, nullable=False)
-    volume = Column(BIGINT, nullable=False)
+    volume = Column(BigInteger, nullable=False)
     adj_close = Column(Float, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
@@ -53,7 +53,7 @@ class StockQuote(Base):
     price = Column(Float, nullable=False)
     change = Column(Float, nullable=True)
     change_percent = Column(Float, nullable=True)
-    volume = Column(BigInt, nullable=True)
+    volume = Column(BigInteger, nullable=True)
     day_high = Column(Float, nullable=True)
     day_low = Column(Float, nullable=True)
     updated_at = Column(DateTime(timezone=True), server_default=func.now())
