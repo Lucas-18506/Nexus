@@ -10,7 +10,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.database import get_async_db
+from app.core.database import get_db
 from app.services.cache_manager import CacheManager
 
 router = APIRouter(prefix="/cache", tags=["cache"])
